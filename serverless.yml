@@ -1,0 +1,20 @@
+org: mikemfleming
+app: ruckus
+service: ruckus
+
+frameworkVersion: '2'
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+functions:
+  handleSpotifyLink:
+    handler: handler.handleSpotifyLink
+    events: 
+      - http: POST /
+    environment:
+      SLACK_BOT_TOKEN: ${param:SLACK_BOT_TOKEN}
+      SPOTIFY_APP_TOKEN: ${param:SPOTIFY_APP_TOKEN}
